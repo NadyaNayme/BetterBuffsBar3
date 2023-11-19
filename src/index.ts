@@ -36,7 +36,7 @@ function getByID(id: string) {
 }
 
 let config = {
-	appName: 'betterBuffBar',
+	appName: 'betterBuffBar3',
 };
 
 let helperItems = {
@@ -1608,9 +1608,9 @@ async function startOverlay(element: HTMLElement, region?: string) {
 					let base64ImageString = dataUrl
 						.getContext('2d')
 						.getImageData(0, 0, dataUrl.width, dataUrl.height);
-					alt1.overLaySetGroup('region' + region);
-					alt1.overLayFreezeGroup('region' + region);
-					alt1.overLayClearGroup('region' + region);
+					alt1.overLaySetGroup('install3region' + region);
+					alt1.overLayFreezeGroup('install3region' + region);
+					alt1.overLayClearGroup('install3region' + region);
 					alt1.overLayImage(
 						overlayPosition.x,
 						overlayPosition.y,
@@ -1618,10 +1618,10 @@ async function startOverlay(element: HTMLElement, region?: string) {
 						base64ImageString.width,
 						refreshRate
 					);
-					alt1.overLayRefreshGroup('region' + region);
+					alt1.overLayRefreshGroup('install3region' + region);
 				} else {
-					alt1.overLayClearGroup('region' + region);
-					alt1.overLayRefreshGroup('region' + region);
+					alt1.overLayClearGroup('install3region' + region);
+					alt1.overLayRefreshGroup('install3region' + region);
 				}
 			})
 			.catch((e) => {

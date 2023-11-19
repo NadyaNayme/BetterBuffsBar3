@@ -11607,7 +11607,7 @@ function getByID(id) {
     return document.getElementById(id);
 }
 var config = {
-    appName: 'betterBuffBar',
+    appName: 'betterBuffBar3',
 };
 var helperItems = {
     Output: getByID('output'),
@@ -11806,10 +11806,10 @@ function startBetterBuffsBar() {
     }
     watchBuffs();
     if (_a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('activeOverlay')) {
-        startOverlay(getByID('Buffs'), '');
+        startOverlay(getByID('BuffsInstall3'), '');
         if (_a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('beta')) {
-            startOverlay(getByID('Buffs2'), '2');
-            startOverlay(getByID('Buffs3'), '3');
+            startOverlay(getByID('Buffs2Install3'), '2');
+            startOverlay(getByID('Buffs3Install3'), '3');
         }
     }
     else {
@@ -12000,9 +12000,12 @@ function watchBuffs() {
                 cooldownTimer: 82,
             });
             /* BOLG is currently still special */
-            if (document.querySelectorAll('#Buffs #BolgStacksBuff').length ||
-                document.querySelectorAll('#Buffs2 #BolgStacksBuff').length ||
-                document.querySelectorAll('#Buffs3 #BolgStacksBuff').length) {
+            if (document.querySelectorAll('#BuffsInstall3 #BolgStacksBuff')
+                .length ||
+                document.querySelectorAll('#Buffs2Install3 #BolgStacksBuff')
+                    .length ||
+                document.querySelectorAll('#Buffs3Install3 #BolgStacksBuff')
+                    .length) {
                 findBolgStacks(buffs);
             }
             findStatus(buffs, ultimateImages.berserk, ultimatesList.Berserk, {
@@ -12157,9 +12160,9 @@ function findStatus(buffsReader, buffImage, element, options) {
                 case 0:
                     _g = options.threshold, threshold = _g === void 0 ? (_a = options.threshold) !== null && _a !== void 0 ? _a : 100 : _g, _h = options.expirationPulse, expirationPulse = _h === void 0 ? (_b = options.expirationPulse) !== null && _b !== void 0 ? _b : false : _h, _j = options.minRange, minRange = _j === void 0 ? (_c = options.minRange) !== null && _c !== void 0 ? _c : 0 : _j, _k = options.maxRange, maxRange = _k === void 0 ? (_d = options.maxRange) !== null && _d !== void 0 ? _d : Infinity : _k, _l = options.showCooldown, showCooldown = _l === void 0 ? (_e = options.showCooldown) !== null && _e !== void 0 ? _e : false : _l, _m = options.cooldownTimer, cooldownTimer = _m === void 0 ? options.cooldownTimer : _m, _o = options.debug, debug = _o === void 0 ? (_f = options.debug) !== null && _f !== void 0 ? _f : false : _o;
                     // Exit early if our buff isn't in the Tracked Buffs list
-                    if ((!getByID('Buffs').contains(element) &&
-                        !getByID('Buffs2').contains(element) &&
-                        !getByID('Buffs3').contains(element)) ||
+                    if ((!getByID('BuffsInstall3').contains(element) &&
+                        !getByID('Buffs2Install3').contains(element) &&
+                        !getByID('Buffs3Install3').contains(element)) ||
                         !buffsReader) {
                         return [2 /*return*/];
                     }
@@ -12419,15 +12422,15 @@ function findEnemyDebuffs() {
     if (!((_a = targetDisplay.state) === null || _a === void 0 ? void 0 : _a.name)) {
         setInactive(getByID('VulnerabilityDebuff'));
     }
-    if (!getByID('Buffs').contains(getByID('DeathMarkDebuff')) &&
-        !getByID('Buffs2').contains(getByID('DeathMarkDebuff')) &&
-        !getByID('Buffs3').contains(getByID('DeathMarkDebuff')) &&
-        !getByID('Buffs').contains(getByID('VulnerabilityDebuff')) &&
-        !getByID('Buffs2').contains(getByID('VulnerabilityDebuff')) &&
-        !getByID('Buffs3').contains(getByID('VulnerabilityDebuff')) &&
-        !getByID('Buffs').contains(getByID('Bloat')) &&
-        !getByID('Buffs2').contains(getByID('Bloat')) &&
-        !getByID('Buffs3').contains(getByID('Bloat'))) {
+    if (!getByID('BuffsInstall3').contains(getByID('DeathMarkDebuff')) &&
+        !getByID('Buffs2Install3').contains(getByID('DeathMarkDebuff')) &&
+        !getByID('Buffs3Install3').contains(getByID('DeathMarkDebuff')) &&
+        !getByID('BuffsInstall3').contains(getByID('VulnerabilityDebuff')) &&
+        !getByID('Buffs2Install3').contains(getByID('VulnerabilityDebuff')) &&
+        !getByID('Buffs3Install3').contains(getByID('VulnerabilityDebuff')) &&
+        !getByID('BuffsInstall3').contains(getByID('Bloat')) &&
+        !getByID('Buffs2Install3').contains(getByID('Bloat')) &&
+        !getByID('Buffs3Install3').contains(getByID('Bloat'))) {
         return;
     }
     var target_display_loc = {
@@ -12479,9 +12482,9 @@ function findPrayer(buffsList, debuffsList) {
                 }
             }
             if ((prayersActive > 0 &&
-                getByID('Buffs').contains(prayersList.DpsPrayer)) ||
-                getByID('Buffs2').contains(prayersList.DpsPrayer) ||
-                getByID('Buffs3').contains(prayersList.DpsPrayer)) {
+                getByID('BuffsInstall3').contains(prayersList.DpsPrayer)) ||
+                getByID('Buffs2Install3').contains(prayersList.DpsPrayer) ||
+                getByID('Buffs3Install3').contains(prayersList.DpsPrayer)) {
                 for (_c = 0, _d = Object.entries(buffsList); _c < _d.length; _c++) {
                     _e = _d[_c], _key = _e[0], value = _e[1];
                     lastActiveDPS = testDpsPrayers(value);
@@ -12492,9 +12495,9 @@ function findPrayer(buffsList, debuffsList) {
                 prayersList.DpsPrayer.classList.add('inactive');
             }
             if ((prayersActive > 0 &&
-                getByID('Buffs').contains(prayersList.OverheadPrayer)) ||
-                getByID('Buffs2').contains(prayersList.OverheadPrayer) ||
-                getByID('Buffs3').contains(prayersList.OverheadPrayer)) {
+                getByID('BuffsInstall3').contains(prayersList.OverheadPrayer)) ||
+                getByID('Buffs2Install3').contains(prayersList.OverheadPrayer) ||
+                getByID('Buffs3Install3').contains(prayersList.OverheadPrayer)) {
                 for (_f = 0, _g = Object.entries(buffsList); _f < _g.length; _f++) {
                     _h = _g[_f], _key = _h[0], value = _h[1];
                     lastActiveOverhead = testOverheadPrayers(value);
@@ -12512,9 +12515,9 @@ function testDpsPrayers(buff) {
     return __awaiter(this, void 0, void 0, function () {
         var affliction, anguish, desolation, malevolence, ruination, sorrow, torment, turmoil, prayerTests, _i, _a, _b, key, value;
         return __generator(this, function (_c) {
-            if (getByID('Buffs').contains(prayersList.DpsPrayer) ||
-                getByID('Buffs2').contains(prayersList.DpsPrayer) ||
-                getByID('Buffs3').contains(prayersList.DpsPrayer)) {
+            if (getByID('BuffsInstall3').contains(prayersList.DpsPrayer) ||
+                getByID('Buffs2Install3').contains(prayersList.DpsPrayer) ||
+                getByID('Buffs3Install3').contains(prayersList.DpsPrayer)) {
                 affliction = buff.countMatch(prayerImages.affliction, false);
                 anguish = buff.countMatch(prayerImages.anguish, false);
                 desolation = buff.countMatch(prayerImages.desolation, false);
@@ -12552,9 +12555,9 @@ function testOverheadPrayers(buff) {
     return __awaiter(this, void 0, void 0, function () {
         var deflectMagic, deflectMelee, deflectNecromancy, deflectRanged, protectFromMagic, protectFromMelee, protectFromNecromancy, protectFromRanged, soulSplit, prayerTests, _i, _a, _b, key, value;
         return __generator(this, function (_c) {
-            if (getByID('Buffs').contains(prayersList.OverheadPrayer) ||
-                getByID('Buffs2').contains(prayersList.OverheadPrayer) ||
-                getByID('Buffs3').contains(prayersList.OverheadPrayer)) {
+            if (getByID('BuffsInstall3').contains(prayersList.OverheadPrayer) ||
+                getByID('Buffs2Install3').contains(prayersList.OverheadPrayer) ||
+                getByID('Buffs3Install3').contains(prayersList.OverheadPrayer)) {
                 deflectMagic = buff.countMatch(prayerImages.deflectMagic, false);
                 deflectMelee = buff.countMatch(prayerImages.deflectMelee, false);
                 deflectNecromancy = buff.countMatch(prayerImages.deflectNecromancy, false);
@@ -12784,7 +12787,7 @@ function setOverlayPosition() {
                 case 1:
                     if (!updatingOverlayPosition) return [3 /*break*/, 3];
                     alt1.setTooltip('Press Alt+1 to save position');
-                    bbb = getByID('Buffs');
+                    bbb = getByID('BuffsInstall3');
                     _a1sauce__WEBPACK_IMPORTED_MODULE_0__.updateSetting('overlayPosition', {
                         x: Math.floor(alt1__WEBPACK_IMPORTED_MODULE_9__.getMousePosition().x -
                             (_a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('uiScale') / 100) * (bbb.offsetWidth / 2)),
@@ -12819,7 +12822,7 @@ function setOverlayPosition2() {
                 case 1:
                     if (!updatingOverlayPosition) return [3 /*break*/, 3];
                     alt1.setTooltip('Press Alt+1 to save position');
-                    bbb = getByID('Buffs2');
+                    bbb = getByID('Buffs2Install3');
                     _a1sauce__WEBPACK_IMPORTED_MODULE_0__.updateSetting('overlay2Position', {
                         x: Math.floor(alt1__WEBPACK_IMPORTED_MODULE_9__.getMousePosition().x -
                             (_a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('uiScale') / 100) * (bbb.offsetWidth / 2)),
@@ -12854,7 +12857,7 @@ function setOverlayPosition3() {
                 case 1:
                     if (!updatingOverlayPosition) return [3 /*break*/, 3];
                     alt1.setTooltip('Press Alt+1 to save position');
-                    bbb = getByID('Buffs3');
+                    bbb = getByID('Buffs3Install3');
                     _a1sauce__WEBPACK_IMPORTED_MODULE_0__.updateSetting('overlay3Position', {
                         x: Math.floor(alt1__WEBPACK_IMPORTED_MODULE_9__.getMousePosition().x -
                             (_a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('uiScale') / 100) * (bbb.offsetWidth / 2)),
@@ -12875,7 +12878,7 @@ function setOverlayPosition3() {
     });
 }
 function updateLocation(e) {
-    var bbb = getByID('Buffs');
+    var bbb = getByID('BuffsInstall3');
     _a1sauce__WEBPACK_IMPORTED_MODULE_0__.updateSetting('overlayPosition', {
         x: Math.floor(e.x - (_a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('uiScale') / 100) * (bbb.offsetWidth / 2)),
         y: Math.floor(e.y - (_a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('uiScale') / 100) * (bbb.offsetHeight / 2)),
@@ -12884,7 +12887,7 @@ function updateLocation(e) {
     helperItems.BetterBuffsBar.classList.toggle('positioning', updatingOverlayPosition);
 }
 function updateLocation2(e) {
-    var bbb = getByID('Buffs2');
+    var bbb = getByID('Buffs2Install3');
     _a1sauce__WEBPACK_IMPORTED_MODULE_0__.updateSetting('overlay2Position', {
         x: Math.floor(e.x - (_a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('uiScale') / 100) * (bbb.offsetWidth / 2)),
         y: Math.floor(e.y - (_a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('uiScale') / 100) * (bbb.offsetHeight / 2)),
@@ -12893,7 +12896,7 @@ function updateLocation2(e) {
     helperItems.BetterBuffsBar.classList.toggle('positioning', updatingOverlayPosition);
 }
 function updateLocation3(e) {
-    var bbb = getByID('Buffs3');
+    var bbb = getByID('Buffs3Install3');
     _a1sauce__WEBPACK_IMPORTED_MODULE_0__.updateSetting('overlay3Position', {
         x: Math.floor(e.x - (_a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('uiScale') / 100) * (bbb.offsetWidth / 2)),
         y: Math.floor(e.y - (_a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('uiScale') / 100) * (bbb.offsetHeight / 2)),
@@ -12940,19 +12943,19 @@ function startOverlay(element, region) {
                         skipAutoScale: true,
                     })
                         .then(function (dataUrl) {
-                        if (inCombat || element == getByID('Buffs')) {
+                        if (inCombat || element == getByID('BuffsInstall3')) {
                             var base64ImageString = dataUrl
                                 .getContext('2d')
                                 .getImageData(0, 0, dataUrl.width, dataUrl.height);
-                            alt1.overLaySetGroup('region' + region);
-                            alt1.overLayFreezeGroup('region' + region);
-                            alt1.overLayClearGroup('region' + region);
+                            alt1.overLaySetGroup('install3region' + region);
+                            alt1.overLayFreezeGroup('install3region' + region);
+                            alt1.overLayClearGroup('install3region' + region);
                             alt1.overLayImage(overlayPosition.x, overlayPosition.y, alt1__WEBPACK_IMPORTED_MODULE_9__.encodeImageString(base64ImageString), base64ImageString.width, refreshRate);
-                            alt1.overLayRefreshGroup('region' + region);
+                            alt1.overLayRefreshGroup('install3region' + region);
                         }
                         else {
-                            alt1.overLayClearGroup('region' + region);
-                            alt1.overLayRefreshGroup('region' + region);
+                            alt1.overLayClearGroup('install3region' + region);
+                            alt1.overLayRefreshGroup('install3region' + region);
                         }
                     })
                         .catch(function (e) {
@@ -13011,15 +13014,15 @@ function setDefaultSettings() {
     }));
 }
 function loadSettings() {
-    getByID('Buffs').style.setProperty('--maxcount', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('buffsPerRow'));
-    getByID('Buffs').style.setProperty('--totalitems', helperItems.TrackedBuffs.children.length.toString());
-    getByID('Buffs2').style.setProperty('--maxcount', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('buffsPerRow'));
-    getByID('Buffs2').style.setProperty('--totalitems', helperItems.TrackedBuffs.children.length.toString());
-    getByID('Buffs3').style.setProperty('--maxcount', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('buffsPerRow'));
-    getByID('Buffs3').style.setProperty('--totalitems', helperItems.TrackedBuffs.children.length.toString());
-    getByID('Buffs').style.setProperty('--scale', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('uiScale'));
-    getByID('Buffs2').style.setProperty('--scale', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('uiScale'));
-    getByID('Buffs3').style.setProperty('--scale', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('uiScale'));
+    getByID('BuffsInstall3').style.setProperty('--maxcount', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('buffsPerRow'));
+    getByID('BuffsInstall3').style.setProperty('--totalitems', helperItems.TrackedBuffs.children.length.toString());
+    getByID('Buffs2Install3').style.setProperty('--maxcount', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('buffsPerRow'));
+    getByID('Buffs2Install3').style.setProperty('--totalitems', helperItems.TrackedBuffs.children.length.toString());
+    getByID('Buffs3Install3').style.setProperty('--maxcount', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('buffsPerRow'));
+    getByID('Buffs3Install3').style.setProperty('--totalitems', helperItems.TrackedBuffs.children.length.toString());
+    getByID('BuffsInstall3').style.setProperty('--scale', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('uiScale'));
+    getByID('Buffs2Install3').style.setProperty('--scale', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('uiScale'));
+    getByID('Buffs3Install3').style.setProperty('--scale', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('uiScale'));
     helperItems.BetterBuffsBar.classList.toggle('fade', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('fadeInactiveBuffs'));
     helperItems.BetterBuffsBar.classList.toggle('big-head-mode', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('bigHeadMode'));
     helperItems.BetterBuffsBar.classList.toggle('blink-maintainables', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('showMaintainableBlinking'));
@@ -13274,7 +13277,7 @@ var settingsObject = {
     beta: _a1sauce__WEBPACK_IMPORTED_MODULE_0__.createCheckboxSetting('beta', 'Beta Testing', false),
 };
 settingsObject.BuffsPerRow.addEventListener('click', function () {
-    getByID('Buffs').style.setProperty('--maxcount', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('buffsPerRow'));
+    getByID('BuffsInstall3').style.setProperty('--maxcount', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('buffsPerRow'));
     setGridSize();
     setBigHeadGrid();
 });
@@ -13294,7 +13297,7 @@ settingsObject.BlinkExpiredBuffs.addEventListener('change', function () {
     helperItems.BetterBuffsBar.classList.toggle('blink-maintainables', settingsObject.BlinkExpiredBuffs.querySelector('input').checked);
 });
 settingsObject.UIScale.addEventListener('change', function () {
-    getByID('Buffs').style.setProperty('--scale', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('uiScale'));
+    getByID('BuffsInstall3').style.setProperty('--scale', _a1sauce__WEBPACK_IMPORTED_MODULE_0__.getSetting('uiScale'));
     if (parseInt(settingsObject.UIScale.querySelector('input').value, 10) < 100) {
         helperItems.TrackedBuffs.classList.add('scaled');
     }
