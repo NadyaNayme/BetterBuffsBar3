@@ -259,10 +259,10 @@ export function startBetterBuffsBar() {
 
 	watchBuffs();
 	if (sauce.getSetting('activeOverlay')) {
-		startOverlay(getByID('Buffs'), '');
+		startOverlay(getByID('BuffsInstall3'), '');
 		if (sauce.getSetting('beta')) {
-			startOverlay(getByID('Buffs2'), '2');
-			startOverlay(getByID('Buffs3'), '3');
+			startOverlay(getByID('Buffs2Install3'), '2');
+			startOverlay(getByID('Buffs3Install3'), '3');
 		}
 	} else {
 		helperItems.BetterBuffsBar.classList.add('overlay-disabled');
@@ -568,9 +568,12 @@ function watchBuffs() {
 
 			/* BOLG is currently still special */
 			if (
-				document.querySelectorAll('#Buffs #BolgStacksBuff').length ||
-				document.querySelectorAll('#Buffs2 #BolgStacksBuff').length ||
-				document.querySelectorAll('#Buffs3 #BolgStacksBuff').length
+				document.querySelectorAll('#BuffsInstall3 #BolgStacksBuff')
+					.length ||
+				document.querySelectorAll('#Buffs2Install3 #BolgStacksBuff')
+					.length ||
+				document.querySelectorAll('#Buffs3Install3 #BolgStacksBuff')
+					.length
 			) {
 				findBolgStacks(buffs);
 			}
@@ -822,9 +825,9 @@ async function findStatus(
 	} = options;
 	// Exit early if our buff isn't in the Tracked Buffs list
 	if (
-		(!getByID('Buffs').contains(element) &&
-			!getByID('Buffs2').contains(element) &&
-			!getByID('Buffs3').contains(element)) ||
+		(!getByID('BuffsInstall3').contains(element) &&
+			!getByID('Buffs2Install3').contains(element) &&
+			!getByID('Buffs3Install3').contains(element)) ||
 		!buffsReader
 	) {
 		return;
@@ -1075,15 +1078,15 @@ function findEnemyDebuffs() {
 	}
 
 	if (
-		!getByID('Buffs').contains(getByID('DeathMarkDebuff')) &&
-		!getByID('Buffs2').contains(getByID('DeathMarkDebuff')) &&
-		!getByID('Buffs3').contains(getByID('DeathMarkDebuff')) &&
-		!getByID('Buffs').contains(getByID('VulnerabilityDebuff')) &&
-		!getByID('Buffs2').contains(getByID('VulnerabilityDebuff')) &&
-		!getByID('Buffs3').contains(getByID('VulnerabilityDebuff')) &&
-		!getByID('Buffs').contains(getByID('Bloat')) &&
-		!getByID('Buffs2').contains(getByID('Bloat')) &&
-		!getByID('Buffs3').contains(getByID('Bloat'))
+		!getByID('BuffsInstall3').contains(getByID('DeathMarkDebuff')) &&
+		!getByID('Buffs2Install3').contains(getByID('DeathMarkDebuff')) &&
+		!getByID('Buffs3Install3').contains(getByID('DeathMarkDebuff')) &&
+		!getByID('BuffsInstall3').contains(getByID('VulnerabilityDebuff')) &&
+		!getByID('Buffs2Install3').contains(getByID('VulnerabilityDebuff')) &&
+		!getByID('Buffs3Install3').contains(getByID('VulnerabilityDebuff')) &&
+		!getByID('BuffsInstall3').contains(getByID('Bloat')) &&
+		!getByID('Buffs2Install3').contains(getByID('Bloat')) &&
+		!getByID('Buffs3Install3').contains(getByID('Bloat'))
 	) {
 		return;
 	}
@@ -1154,9 +1157,9 @@ async function findPrayer(
 
 	if (
 		(prayersActive > 0 &&
-			getByID('Buffs').contains(prayersList.DpsPrayer)) ||
-		getByID('Buffs2').contains(prayersList.DpsPrayer) ||
-		getByID('Buffs3').contains(prayersList.DpsPrayer)
+			getByID('BuffsInstall3').contains(prayersList.DpsPrayer)) ||
+		getByID('Buffs2Install3').contains(prayersList.DpsPrayer) ||
+		getByID('Buffs3Install3').contains(prayersList.DpsPrayer)
 	) {
 		for (let [_key, value] of Object.entries(buffsList)) {
 			lastActiveDPS = testDpsPrayers(value);
@@ -1168,9 +1171,9 @@ async function findPrayer(
 
 	if (
 		(prayersActive > 0 &&
-			getByID('Buffs').contains(prayersList.OverheadPrayer)) ||
-		getByID('Buffs2').contains(prayersList.OverheadPrayer) ||
-		getByID('Buffs3').contains(prayersList.OverheadPrayer)
+			getByID('BuffsInstall3').contains(prayersList.OverheadPrayer)) ||
+		getByID('Buffs2Install3').contains(prayersList.OverheadPrayer) ||
+		getByID('Buffs3Install3').contains(prayersList.OverheadPrayer)
 	) {
 		for (let [_key, value] of Object.entries(buffsList)) {
 			lastActiveOverhead = testOverheadPrayers(value);
@@ -1183,9 +1186,9 @@ async function findPrayer(
 
 async function testDpsPrayers(buff: BuffReader.Buff) {
 	if (
-		getByID('Buffs').contains(prayersList.DpsPrayer) ||
-		getByID('Buffs2').contains(prayersList.DpsPrayer) ||
-		getByID('Buffs3').contains(prayersList.DpsPrayer)
+		getByID('BuffsInstall3').contains(prayersList.DpsPrayer) ||
+		getByID('Buffs2Install3').contains(prayersList.DpsPrayer) ||
+		getByID('Buffs3Install3').contains(prayersList.DpsPrayer)
 	) {
 		let affliction = buff.countMatch(prayerImages.affliction, false);
 		let anguish = buff.countMatch(prayerImages.anguish, false);
@@ -1219,9 +1222,9 @@ async function testDpsPrayers(buff: BuffReader.Buff) {
 
 async function testOverheadPrayers(buff: BuffReader.Buff) {
 	if (
-		getByID('Buffs').contains(prayersList.OverheadPrayer) ||
-		getByID('Buffs2').contains(prayersList.OverheadPrayer) ||
-		getByID('Buffs3').contains(prayersList.OverheadPrayer)
+		getByID('BuffsInstall3').contains(prayersList.OverheadPrayer) ||
+		getByID('Buffs2Install3').contains(prayersList.OverheadPrayer) ||
+		getByID('Buffs3Install3').contains(prayersList.OverheadPrayer)
 	) {
 		/* Overhead Prayers */
 		let deflectMagic = buff.countMatch(prayerImages.deflectMagic, false);
@@ -1440,7 +1443,7 @@ async function setOverlayPosition() {
 	);
 	while (updatingOverlayPosition) {
 		alt1.setTooltip('Press Alt+1 to save position');
-		let bbb = getByID('Buffs');
+		let bbb = getByID('BuffsInstall3');
 		sauce.updateSetting('overlayPosition', {
 			x: Math.floor(
 				a1lib.getMousePosition().x -
@@ -1470,7 +1473,7 @@ async function setOverlayPosition2() {
 	);
 	while (updatingOverlayPosition) {
 		alt1.setTooltip('Press Alt+1 to save position');
-		let bbb = getByID('Buffs2');
+		let bbb = getByID('Buffs2Install3');
 		sauce.updateSetting('overlay2Position', {
 			x: Math.floor(
 				a1lib.getMousePosition().x -
@@ -1500,7 +1503,7 @@ async function setOverlayPosition3() {
 	);
 	while (updatingOverlayPosition) {
 		alt1.setTooltip('Press Alt+1 to save position');
-		let bbb = getByID('Buffs3');
+		let bbb = getByID('Buffs3Install3');
 		sauce.updateSetting('overlay3Position', {
 			x: Math.floor(
 				a1lib.getMousePosition().x -
@@ -1520,7 +1523,7 @@ async function setOverlayPosition3() {
 }
 
 function updateLocation(e) {
-	let bbb = getByID('Buffs');
+	let bbb = getByID('BuffsInstall3');
 	sauce.updateSetting('overlayPosition', {
 		x: Math.floor(
 			e.x - (sauce.getSetting('uiScale') / 100) * (bbb.offsetWidth / 2)
@@ -1537,7 +1540,7 @@ function updateLocation(e) {
 }
 
 function updateLocation2(e) {
-	let bbb = getByID('Buffs2');
+	let bbb = getByID('Buffs2Install3');
 	sauce.updateSetting('overlay2Position', {
 		x: Math.floor(
 			e.x - (sauce.getSetting('uiScale') / 100) * (bbb.offsetWidth / 2)
@@ -1554,7 +1557,7 @@ function updateLocation2(e) {
 }
 
 function updateLocation3(e) {
-	let bbb = getByID('Buffs3');
+	let bbb = getByID('Buffs3Install3');
 	sauce.updateSetting('overlay3Position', {
 		x: Math.floor(
 			e.x - (sauce.getSetting('uiScale') / 100) * (bbb.offsetWidth / 2)
@@ -1601,7 +1604,7 @@ async function startOverlay(element: HTMLElement, region?: string) {
 				skipAutoScale: true,
 			})
 			.then((dataUrl) => {
-				if (inCombat || element == getByID('Buffs')) {
+				if (inCombat || element == getByID('BuffsInstall3')) {
 					let base64ImageString = dataUrl
 						.getContext('2d')
 						.getImageData(0, 0, dataUrl.width, dataUrl.height);
@@ -1678,33 +1681,42 @@ function setDefaultSettings() {
 }
 
 function loadSettings() {
-	getByID('Buffs').style.setProperty(
+	getByID('BuffsInstall3').style.setProperty(
 		'--maxcount',
 		sauce.getSetting('buffsPerRow')
 	);
-	getByID('Buffs').style.setProperty(
+	getByID('BuffsInstall3').style.setProperty(
 		'--totalitems',
 		helperItems.TrackedBuffs.children.length.toString()
 	);
-	getByID('Buffs2').style.setProperty(
+	getByID('Buffs2Install3').style.setProperty(
 		'--maxcount',
 		sauce.getSetting('buffsPerRow')
 	);
-	getByID('Buffs2').style.setProperty(
+	getByID('Buffs2Install3').style.setProperty(
 		'--totalitems',
 		helperItems.TrackedBuffs.children.length.toString()
 	);
-	getByID('Buffs3').style.setProperty(
+	getByID('Buffs3Install3').style.setProperty(
 		'--maxcount',
 		sauce.getSetting('buffsPerRow')
 	);
-	getByID('Buffs3').style.setProperty(
+	getByID('Buffs3Install3').style.setProperty(
 		'--totalitems',
 		helperItems.TrackedBuffs.children.length.toString()
 	);
-	getByID('Buffs').style.setProperty('--scale', sauce.getSetting('uiScale'));
-	getByID('Buffs2').style.setProperty('--scale', sauce.getSetting('uiScale'));
-	getByID('Buffs3').style.setProperty('--scale', sauce.getSetting('uiScale'));
+	getByID('BuffsInstall3').style.setProperty(
+		'--scale',
+		sauce.getSetting('uiScale')
+	);
+	getByID('Buffs2Install3').style.setProperty(
+		'--scale',
+		sauce.getSetting('uiScale')
+	);
+	getByID('Buffs3Install3').style.setProperty(
+		'--scale',
+		sauce.getSetting('uiScale')
+	);
 	helperItems.BetterBuffsBar.classList.toggle(
 		'fade',
 		sauce.getSetting('fadeInactiveBuffs')
@@ -2172,7 +2184,7 @@ const settingsObject = {
 };
 
 settingsObject.BuffsPerRow.addEventListener('click', () => {
-	getByID('Buffs').style.setProperty(
+	getByID('BuffsInstall3').style.setProperty(
 		'--maxcount',
 		sauce.getSetting('buffsPerRow')
 	);
@@ -2209,7 +2221,10 @@ settingsObject.BlinkExpiredBuffs.addEventListener('change', () => {
 });
 
 settingsObject.UIScale.addEventListener('change', () => {
-	getByID('Buffs').style.setProperty('--scale', sauce.getSetting('uiScale'));
+	getByID('BuffsInstall3').style.setProperty(
+		'--scale',
+		sauce.getSetting('uiScale')
+	);
 	if (
 		parseInt(settingsObject.UIScale.querySelector('input').value, 10) < 100
 	) {
