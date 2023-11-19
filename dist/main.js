@@ -1095,7 +1095,7 @@ html:not(.beta) .beta-only {
   background-color: transparent !important;
 }
 
-#UntrackedBuffs .spacer {
+#UntrackedBuffsInstall3 .spacer {
   background-color: #3e3e3e !important;
 }
 
@@ -1123,7 +1123,7 @@ html:not(.beta) .beta-only {
   opacity: 0;
 }
 
-#UntrackedBuffs {
+#UntrackedBuffsInstall3 {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -1136,7 +1136,7 @@ html:not(.beta) .beta-only {
 }
 
 .tracked-region li,
-#UntrackedBuffs li {
+#UntrackedBuffsInstall3 li {
   position: relative;
   display: flex;
   width: 27px;
@@ -1145,12 +1145,12 @@ html:not(.beta) .beta-only {
 }
 
 .tracked-region li img,
-#UntrackedBuffs li img {
+#UntrackedBuffsInstall3 li img {
   background-color: #3e3e3e;
 }
 
 .tracked-region li::after,
-#UntrackedBuffs li::after {
+#UntrackedBuffsInstall3 li::after {
   display: block;
   content: attr(data-time);
   z-index: 3;
@@ -1164,7 +1164,7 @@ html:not(.beta) .beta-only {
 }
 
 .tracked-region li::before,
-#UntrackedBuffs li::before {
+#UntrackedBuffsInstall3 li::before {
   display: block;
   content: attr(data-time);
   z-index: 3;
@@ -1449,7 +1449,7 @@ html:not(.beta) .beta-only {
   opacity: 1;
 }
 
-#UntrackedBuffs {
+#UntrackedBuffsInstall3 {
   border: solid 1px red;
   min-height: 10px;
   padding: 4px;
