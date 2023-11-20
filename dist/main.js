@@ -12093,6 +12093,9 @@ function watchBuffs() {
         }
         findEnemyDebuffs();
     }, loopSpeed);
+    var timerWatcher = setInterval(function () {
+        watchTimers();
+    }, 3000);
 }
 function checkBuffsForHidingOverlay(buffsReader) {
     return __awaiter(this, void 0, void 0, function () {
@@ -12594,6 +12597,42 @@ function testOverheadPrayers(buff) {
 }
 function getMaxValueKey(obj) {
     return Object.keys(obj).reduce(function (a, b) { return (obj[a] > obj[b] ? a : b); });
+}
+var timersCollection = {};
+function watchTimers() {
+    return __awaiter(this, void 0, void 0, function () {
+        var items;
+        return __generator(this, function (_a) {
+            items = helperItems.TrackedBuffs.querySelectorAll('li');
+            items.forEach(function (item) {
+                var time = '0';
+                if (item.dataset.time !== undefined || item.dataset.time !== null) {
+                    time = item.dataset.time;
+                }
+                if (timersCollection[item.dataset.name] == item.dataset.time &&
+                    item.classList.contains('active') &&
+                    item.dataset.startedTimer) {
+                    startCooldownTimer(item, parseInt(item.dataset.cooldownTime, 10) +
+                        parseInt(item.dataset.time, 10) -
+                        3);
+                }
+                else if (timersCollection[item.dataset.name] == item.dataset.time &&
+                    parseInt(item.dataset.time, 10) < 60 &&
+                    !item.dataset.time.indexOf('m') &&
+                    !item.classList.contains('enemy-debuff') &&
+                    !item.classList.contains('stacks') &&
+                    !item.classList.contains('no-timer') &&
+                    item.classList.contains('active')) {
+                    setInactive(item);
+                }
+                else {
+                    timersCollection[item.dataset.name] = time;
+                }
+                console.log(timersCollection);
+            });
+            return [2 /*return*/];
+        });
+    });
 }
 function setCooldown(element, cooldownTimer) {
     return __awaiter(this, void 0, void 0, function () {
