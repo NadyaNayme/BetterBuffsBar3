@@ -61,6 +61,7 @@ let buffsList = {
 	GladiatorsRageBuff: getByID('GladiatorsRageBuff'),
 	NecrosisBuff: getByID('NecrosisBuff'),
 	OverloadBuff: getByID('OverloadBuff'),
+	SupremeOverloadBuff: getByID('SupremeOverloadBuff'),
 	TimeRiftBuff: getByID('TimeRiftBuff'),
 	WeaponPoisonBuff: getByID('WeaponPoisonBuff'),
 	Aura: getByID('Aura'),
@@ -86,6 +87,11 @@ let buffsList = {
 	ConjureSkeleton: getByID('ConjureSkeleton'),
 	ConjureZombie: getByID('ConjureZombie'),
 	ConjureGhost: getByID('ConjureGhost'),
+	SplitSoulECB: getByID('SplitSoulECBBuff'),
+	AggressionPotion: getByID('AggressionPotionBuff'),
+	PowderOfProtection: getByID('PowderOfProtectionBuff'),
+	PowderOfPenance: getByID('PowderOfPenanceBuff'),
+	QuiverAmmo: getByID('QuiverAmmo'),
 };
 
 let debuffsList = {
@@ -99,6 +105,7 @@ let debuffsList = {
 	SignOfLifeDebuff: getByID('SignOfLifeDebuff'),
 	Virus: getByID('VirusDebuff'),
 	PowerburstPrevention: getByID('PowerburstPreventionDebuff'),
+	FeastingSpores: getByID('FestingSporesBuff'),
 };
 
 let sigilsList = {
@@ -138,14 +145,17 @@ var buffImages = a1lib.webpackImages({
 	gladiatorsRage: require('./asset/data/Gladiators_Rage-noborder.data.png'),
 	necrosis: require('./asset/data/Necrosis-noborder.data.png'),
 	overloaded: require('./asset/data/Overloaded-noborder.data.png'),
+	supreme_overloaded: require('./asset/data/supreme_overload.data.png'),
 	overloadedNoBorder: require('./asset/data/Overloaded-noborder.data.png'),
+	balanceByForce: require('./asset/data/balance_by_force-beta.data.png'),
 	perfectEquilibrium: require('./asset/data/Perfect_Equilibrium-noborder.data.png'),
+	perfectEquilibriumCapped: require('./asset/data/perfect_equilibrium_capped.data.png'),
 	perfectEquilibriumNoBorder: require('./asset/data/Perfect_Equilibrium-noborder.data.png'),
 	poisonous: require('./asset/data/Poisonous-top-noborder.data.png'),
 	prayerRenewActive: require('./asset/data/Prayer_Renew_Active-noborder.data.png'),
 	superAntifireActive: require('./asset/data/Super_Anti-Fire_Active-noborder.data.png'),
 	supremeOverloadActive: require('./asset/data/Supreme_Overload_Potion_Active-noborder.data.png'),
-	timeRift: require('./asset/data/Time_Rift-noborder.data.png'),
+	timeRift: require('./asset/data/Time_rift-noborder.data.png'),
 	aura: require('./asset/data/Aura-noborder.data.png'),
 	bonfireBoost: require('./asset/data/Bonfire_Boost-noborder.data.png'),
 	grimoire: require("./asset/data/Erethdor's_grimoire-noborder.data.png"),
@@ -161,10 +171,15 @@ var buffImages = a1lib.webpackImages({
 	Antifire: require('./asset/data/antifire_top.data.png'),
 	PrayerRenewal: require('./asset/data/Prayer_Renew_Active-noborder.data.png'),
 	DeathSpark: require('./asset/data/Death_Spark.data.png'),
-	ThreadsOfFate: require('./asset/data/Threads_Of_Fate.data.png'),
+	ThreadsOfFate: require('./asset/data/Threads_of_Fate.data.png'),
 	ConjureSkeleton: require('./asset/data/skeleton_warrior-top.data.png'),
 	ConjureZombie: require('./asset/data/putrid_zombie-top.data.png'),
 	ConjureGhost: require('./asset/data/vengeful_ghost-top.data.png'),
+	SplitSoulECB: require('./asset/data/split_soul_ecb.data.png'),
+	FeastingSpores: require('./asset/data/deathspore_arrows-buff.data.png'),
+	AggressionPotion: require('./asset/data/aggression_potion.data.png'),
+	PowderOfProtection: require('./asset/data/powder_of_protection.data.png'),
+	PowderOfPenance: require('./asset/data/powder_of_penance.data.png'),
 });
 
 var incenseImages = a1lib.webpackImages({
@@ -188,6 +203,7 @@ var debuffImages = a1lib.webpackImages({
 	blueVirus: require('./asset/data/Blue_virus.data.png'),
 	greenVirus: require('./asset/data/Green_virus.data.png'),
 	powerburstPrevention: require('./asset/data/Powerburst_prevention.data.png'),
+	FeastingSpores: require('./asset/data/deathspore_arrows.data.png'),
 });
 
 var ultimateImages = a1lib.webpackImages({
@@ -228,10 +244,24 @@ var prayerImages = a1lib.webpackImages({
 	turmoil: require('./asset/data/Turmoil-noborder.data.png'),
 });
 
+
+var quiverImages = a1lib.webpackImages({
+	bik: require('./asset/data/bik_arrows.data.png'),
+	ful: require('./asset/data/ful_arrows.data.png'),
+	jas_dragonbane: require('./asset/data/jas_dragonbane.data.png'),
+	wen: require('./asset/data/wen_arrows.data.png'),
+	blackstone: require('./asset/data/blackstone_arrows.data.png'),
+	deathspore: require('./asset/data/deathspore_arrows-quiver.data.png'),
+	diamond_bak: require('./asset/data/diamond_bak_bolts.data.png'),
+	hydrix_bak: require('./asset/data/hydrix_bak_bolts.data.png'),
+	ruby_bak: require('./asset/data/ruby_bak_bolts.data.png'),
+	onyx_bak: require('./asset/data/onyx_bak_bolts.data.png'),
+});
+
 var enemyImages = a1lib.webpackImages({
 	DeathMark: require('./asset/data/Death_Mark.data.png'),
 	Vulnerability: require('./asset/data/Vulnerability_bordered.data.png'),
-	Bloat: require('./asset/data/bloated.data.png'),
+	Bloat: require('./asset/data/Bloated.data.png'),
 });
 
 export function startBetterBuffsBar() {
@@ -335,6 +365,17 @@ function watchBuffs() {
 				}
 			);
 
+
+			findStatus(
+				buffs,
+				buffImages.supremeOverloadActive,
+				buffsList.SupremeOverloadBuff,
+				{
+					threshold: 30,
+					expirationPulse: true,
+				}
+			);
+
 			findStatus(
 				buffs,
 				buffImages.poisonous,
@@ -355,7 +396,7 @@ function watchBuffs() {
 				buffImages.animateDead,
 				buffsList.AnimateDeadBuff,
 				{
-					threshold: 90,
+					threshold: 60,
 				}
 			);
 
@@ -448,6 +489,33 @@ function watchBuffs() {
 
 			findStatus(
 				buffs,
+				buffImages.AggressionPotion,
+				buffsList.AggressionPotion,
+				{
+					threshold: 120,
+				}
+			);
+
+			findStatus(
+				buffs,
+				buffImages.PowderOfProtection,
+				buffsList.PowderOfProtection,
+				{
+					threshold: 130,
+				}
+			);
+
+			findStatus(
+				buffs,
+				buffImages.PowderOfPenance,
+				buffsList.PowderOfPenance,
+				{
+					threshold: 130,
+				}
+			);
+
+			findStatus(
+				buffs,
 				buffImages.prayerRenewActive,
 				buffsList.PrayerRenewal,
 				{ threshold: 225 }
@@ -456,6 +524,16 @@ function watchBuffs() {
 			findStatus(buffs, buffImages.DeathSpark, buffsList.DeathSpark, {
 				threshold: 300,
 			});
+
+			findStatus(
+				buffs,
+				buffImages.balanceByForce,
+				buffsList.BalanceByForceBuff,
+				{
+					threshold: 70,
+				}
+			);
+
 
 			findStatus(buffs, buffImages.Anticipation, buffsList.Anticipation, {
 				threshold: 300,
@@ -665,10 +743,24 @@ function watchBuffs() {
 				}
 			);
 
+
+			findStatus(buffs, buffImages.SplitSoulECB, buffsList.SplitSoulECB, {
+				threshold: 60,
+			});
+
+			findDeathspores(
+				buffs,
+				buffImages.FeastingSpores,
+				debuffsList.FeastingSpores,
+				{ threshold: 18 }
+			);
+
 			findStatus(buffs, buffImages.ConjureGhost, buffsList.ConjureGhost, {
 				threshold: 300,
 				expirationPulse: true,
 			});
+
+			findAmmo(buffs);
 
 			checkBuffsForHidingOverlay(buffs);
 
@@ -780,7 +872,7 @@ async function noDetection(maxAttempts: number, interval: any, bar: string) {
 		return;
 	}
 	if (maxAttempts < 10) {
-		setTimeout(() => {}, 1000 * maxAttempts ** 2);
+		await sauce.timeout(1000 * maxAttempts ** 2);
 		maxAttempts++;
 	}
 	console.log(
@@ -790,7 +882,7 @@ async function noDetection(maxAttempts: number, interval: any, bar: string) {
 
 async function showTooltip(msg: string, duration: number) {
 	alt1.setTooltip(msg);
-	await new Promise((done) => setTimeout(done, duration));
+	await sauce.timeout(duration);
 	alt1.clearTooltip();
 	return;
 }
@@ -923,14 +1015,14 @@ async function findStatus(
 
 				// Pause the check for a tick since we don't need to rapidly update
 				//a buff that won't have a more precise value for 1 minute
-				await new Promise((done) => setTimeout(done, 600));
+				await sauce.timeout(600);
 			}
 			// If we've reached 11 seconds force the item active for 10s and then set it to inactive
 			else if (expirationPulse && timearg.time == 11 && !onCooldown) {
 				element.dataset.time = '<10s';
 				await setActive(element);
 				// This can be desynced from in-game 10s but it's accurate enough
-				await new Promise((done) => setTimeout(done, 10000));
+				await sauce.timeout(10000);
 				await setInactive(element);
 				if (sauce.getSetting('showTooltipReminders')) {
 					showTooltip('Overload expired', 3000);
@@ -985,12 +1077,86 @@ async function findStatus(
 	if (timearg == undefined && foundBuff && !showCooldown) {
 		// The FoundBuff ensures we don't wait 10s to add inactive when BBB first loads
 		if (expirationPulse) {
-			await new Promise((done) => setTimeout(done, 10000));
+			await sauce.timeout(10000);
 		}
 		await setInactive(element);
 	}
 	// Give a very brief pause before checking again
-	await new Promise((done) => setTimeout(done, 10));
+	await sauce.timeout(10);
+	return timearg;
+}
+
+async function findDeathspores(
+	buffsReader: BuffReader.Buff[],
+	buffImage: ImageData,
+	element: HTMLElement,
+	options: {
+		threshold: number;
+		expirationPulse?: boolean;
+		minRange?: number;
+		maxRange?: number;
+		showCooldown?: boolean;
+		cooldownTimer?: number;
+		debug?: boolean;
+	}
+) {
+	let {
+		threshold = options.threshold ?? 100,
+		expirationPulse = options.expirationPulse ?? false,
+		minRange = options.minRange ?? 0,
+		maxRange = options.maxRange ?? Infinity,
+		showCooldown = options.showCooldown ?? false,
+		cooldownTimer = options.cooldownTimer,
+		debug = options.debug ?? false,
+	} = options;
+	// Exit early if our buff isn't in the Tracked Buffs list
+	if (
+		(!getByID('Buffs').contains(element) &&
+			!getByID('Buffs2').contains(element) &&
+			!getByID('Buffs3').contains(element)) ||
+		!buffsReader
+	) {
+		return;
+	}
+
+	// Declared outside of the loop so that it can be checked to be Undefined if no buffs are found
+	let timearg;
+	let foundBuff = false;
+	let cooldownAdjustment = parseInt(sauce.getSetting('delayAdjustment'), 10);
+
+	for (let [_key, value] of Object.entries(buffsReader)) {
+		// If the buff has been found do an early return
+		if (foundBuff) {
+			return;
+		}
+
+		let findBuffImage = value.countMatch(buffImage, false);
+		if (findBuffImage.passed > threshold) {
+			// If a buff has exceeded the threshold or has a 0px failure rate we have a match and want to set it to active
+			foundBuff = true;
+			timearg = value.readArg('timearg').time;
+			if (timearg <= 9 && timearg >= 1) {
+				await setActive(element);
+				let buffTimeRemaining = timearg - cooldownAdjustment;
+				element.dataset.time = buffTimeRemaining.toString();
+			} else {
+				await setInactive(element);
+			}
+		} else if (!showCooldown) {
+			await setInactive(element);
+		}
+	}
+
+	// If we didn't find the buff try again after a brief timeout
+	if (timearg == undefined && foundBuff && !showCooldown) {
+		// The FoundBuff ensures we don't wait 10s to add inactive when BBB first loads
+		if (expirationPulse) {
+			await sauce.timeout(10000);
+		}
+		await setInactive(element);
+	}
+	// Give a very brief pause before checking again
+	await sauce.timeout(10);
 	return timearg;
 }
 
@@ -999,7 +1165,7 @@ async function startCooldownTimer(element: HTMLElement, cooldownTimer: number) {
 	 * Wait the final 1s then set buff to 'cooldown' state
 	 * After its cooldown has finished set it back to 'inactive' state (actually 'readyToBeUsed')
 	 */
-	await new Promise((done) => setTimeout(done, 1050));
+	await sauce.timeout(1050);
 	await setCooldown(element, cooldownTimer);
 	if (
 		element.dataset.cooldown != '0' &&
@@ -1014,11 +1180,10 @@ async function startCooldownTimer(element: HTMLElement, cooldownTimer: number) {
 }
 
 function countdown(element: HTMLElement, cooldownTimer: number, timer: any) {
-	if (parseInt(element.dataset.cooldown, 10) > 0) {
-		element.dataset.cooldown = (
-			parseInt(element.dataset.cooldown, 10) - 1
-		).toString();
-	} else if (element.dataset.cooldown == '0') {
+	let cooldown = parseInt(element.dataset.cooldown, 10);
+	if (cooldown > 0 && !isNaN(cooldown)) {
+		element.dataset.cooldown = cooldown.toString();
+	} else if (element.dataset.cooldown == '0' || isNaN(cooldown)) {
 		element.dataset.startedTimer = 'false';
 		element.dataset.cooldown = '';
 		setInactive(element);
@@ -1064,6 +1229,114 @@ async function findVirus(debuffs: BuffReader.Buff[]) {
 	} else {
 		debuffsList.Virus.dataset.virus = currentVirus;
 		debuffsList.Virus.classList.add('active');
+	}
+}
+
+async function findPerfectEquilibriumStacks(buffs: BuffReader.Buff[]) {
+	if (!buffs) {
+		return;
+	}
+
+	let peActive: number = 0;
+	let capped = '';
+
+	for (let [_key, value] of Object.entries(buffs)) {
+		let checkGreen = value.countMatch(buffImages.perfectEquilibrium, false);
+		let checkRed = value.countMatch(
+			buffImages.perfectEquilibriumCapped,
+			false
+		);
+
+		if (checkGreen.failed == 0 || checkGreen.passed > 380) {
+			buffsList.BolgStacksBuff.dataset.color = 'green';
+			capped = value.readTime().toString();
+			peActive++;
+		}
+		if (checkRed.failed == 0 || checkRed.passed > 300) {
+			buffsList.BolgStacksBuff.dataset.color = 'red';
+			capped = value.readTime().toString();
+			peActive++;
+		}
+	}
+
+	if (!peActive) {
+		buffsList.BolgStacksBuff.dataset.stacks = '';
+		buffsList.BolgStacksBuff.dataset.color = '';
+		buffsList.BolgStacksBuff.classList.add('inactive');
+	} else {
+		buffsList.BolgStacksBuff.dataset.stacks = capped;
+		buffsList.BolgStacksBuff.classList.add('active');
+	}
+}
+
+async function findAmmo(buffs: BuffReader.Buff[]) {
+	if (!buffs) {
+		return;
+	}
+
+	let ammmoActive: number = 0;
+	let currentAmmo = '';
+
+	for (let [_key, value] of Object.entries(buffs)) {
+		let checkBik = value.countMatch(quiverImages.bik, false);
+		let checkFul = value.countMatch(quiverImages.ful, false);
+		let checkWen = value.countMatch(quiverImages.wen, false);
+		let checkJas = value.countMatch(quiverImages.jas_dragonbane, false);
+		let checkBlackstone = value.countMatch(quiverImages.blackstone, false);
+		let checkDeathspores = value.countMatch(quiverImages.deathspore, false);
+		let checkDiamond = value.countMatch(quiverImages.diamond_bak, false);
+		let checkHydrix = value.countMatch(quiverImages.hydrix_bak, false);
+		let checkRuby = value.countMatch(quiverImages.ruby_bak, false);
+		let checkOnyx = value.countMatch(quiverImages.onyx_bak, false);
+
+		if (checkBik.failed == 0 || checkBik.passed > 28) {
+			currentAmmo = 'BIK';
+			ammmoActive++;
+		}
+		if (checkFul.failed == 0 || checkFul.passed > 28) {
+			currentAmmo = 'FUL';
+			ammmoActive++;
+		}
+		if (checkWen.failed == 0 || checkWen.passed > 28) {
+			currentAmmo = 'WEN';
+			ammmoActive++;
+		}
+		if (checkJas.failed == 0 || checkJas.passed > 28) {
+			currentAmmo = 'JAS';
+			ammmoActive++;
+		}
+		if (checkBlackstone.failed == 0 || checkBlackstone.passed > 28) {
+			currentAmmo = 'BSD';
+			ammmoActive++;
+		}
+		if (checkDeathspores.failed == 0 || checkDeathspores.passed > 28) {
+			currentAmmo = 'DSP';
+			ammmoActive++;
+		}
+		if (checkDiamond.failed == 0 || checkDiamond.passed > 180) {
+			currentAmmo = '(D)';
+			ammmoActive++;
+		}
+		if (checkHydrix.failed == 0 || checkHydrix.passed > 180) {
+			currentAmmo = '(H)';
+			ammmoActive++;
+		}
+		if (checkRuby.failed == 0 || checkRuby.passed > 180) {
+			currentAmmo = '(R)';
+			ammmoActive++;
+		}
+		if (checkOnyx.failed == 0 || checkOnyx.passed > 180) {
+			currentAmmo = '(O)';
+			ammmoActive++;
+		}
+	}
+
+	if (!ammmoActive) {
+		buffsList.QuiverAmmo.dataset.ammo = '';
+		buffsList.QuiverAmmo.classList.add('inactive');
+	} else {
+		buffsList.QuiverAmmo.dataset.ammo = currentAmmo;
+		buffsList.QuiverAmmo.classList.add('active');
 	}
 }
 
@@ -1267,7 +1540,7 @@ async function testOverheadPrayers(buff: BuffReader.Buff) {
 		};
 
 		for (let [key, value] of Object.entries(prayerTests)) {
-			if (value > 300) {
+			if (value > 240) {
 				prayersList.OverheadPrayer.dataset.prayer = key
 					.toString()
 					.toLowerCase();
@@ -1324,7 +1597,7 @@ async function setCooldown(element: HTMLElement, cooldownTimer: number) {
 	element.dataset.time = '';
 	element.dataset.startedTimer = 'false';
 	element.dataset.cooldown = cooldownTimer.toString();
-	await new Promise((done) => setTimeout(done, 2000));
+	return sauce.timeout(2000);
 }
 
 async function setInactive(element: HTMLElement) {
@@ -1408,13 +1681,13 @@ async function findBolgStacks(buffs: BuffReader.Buff[]) {
 				let bolgStacks = bolgData[1];
 				buffsList.BolgStacksBuff.dataset.time = bolgStacks;
 				buffsList.BalanceByForceBuff.dataset.time = bolgTime;
-				await new Promise((done) => setTimeout(done, 600));
+				await sauce.timeout(600);
 			}
 		}
 		if (bolgStacksData == undefined) {
 			buffsList.BolgStacksBuff.classList.add('inactive');
 			buffsList.BalanceByForceBuff.classList.add('inactive');
-			await new Promise((done) => setTimeout(done, 600));
+			await sauce.timeout(600);
 			buffsList.BolgStacksBuff.dataset.time = '';
 			buffsList.BalanceByForceBuff.dataset.time = '';
 		} else {
@@ -1422,7 +1695,7 @@ async function findBolgStacks(buffs: BuffReader.Buff[]) {
 			buffsList.BalanceByForceBuff.classList.remove('inactive');
 		}
 	}
-	await new Promise((done) => setTimeout(done, 10));
+	await sauce.timeout(10);
 	return bolgStacksData;
 }
 
@@ -1442,7 +1715,7 @@ async function parseBolgBuff(data: string) {
 			bolgSpecActive = true;
 			bolgSpecTime = '30';
 			bolgStacks = results[0].groups.stacks;
-			await new Promise((done) => setTimeout(done, 30000));
+			await sauce.timeout(30000);
 			bolgSpecActive = false;
 		} else if (bolgSpecActive) {
 			bolgSpecTime = results[0].groups.time ?? 0;
@@ -1452,11 +1725,8 @@ async function parseBolgBuff(data: string) {
 				bolgSpecTime = results[0].groups.time;
 				bolgStacks = '0';
 				bolgSpecActive = true;
-				await new Promise((done) =>
-					setTimeout(
-						done,
-						parseInt(results[0].groups.time, 10) * 1000
-					)
+				await sauce.timeout(
+					parseInt(results[0].groups.time, 10) * 1000
 				);
 				bolgSpecActive = false;
 			} else {
@@ -1495,7 +1765,7 @@ async function setOverlayPosition() {
 		});
 		currentOverlayPosition = sauce.getSetting('overlayPosition');
 		alt1.overLayRefreshGroup('group1');
-		await new Promise((done) => setTimeout(done, 200));
+		await sauce.timeout(200);
 	}
 	alt1.clearTooltip();
 	return;
@@ -1525,7 +1795,7 @@ async function setOverlayPosition2() {
 		});
 		currentOverlay2Position = sauce.getSetting('overlay2Position');
 		alt1.overLayRefreshGroup('group2');
-		await new Promise((done) => setTimeout(done, 200));
+		await sauce.timeout(200);
 	}
 	alt1.clearTooltip();
 	return;
@@ -1555,7 +1825,7 @@ async function setOverlayPosition3() {
 		});
 		currentOverlay3Position = sauce.getSetting('overlay3Position');
 		alt1.overLayRefreshGroup('group3');
-		await new Promise((done) => setTimeout(done, 200));
+		await sauce.timeout(200);
 	}
 	alt1.clearTooltip();
 	return;
@@ -1619,7 +1889,7 @@ async function startOverlay(element: HTMLElement, region?: string) {
 	let buffsPerRow = sauce.getSetting('buffsPerrow');
 	let refreshRate = parseInt(sauce.getSetting('overlayRefreshRate'), 10);
 	let overlayPosition;
-	await new Promise((done) => setTimeout(done, 1000));
+	await sauce.timeout(1000);
 	while (true) {
 		let uiScale = sauce.getSetting('uiScale' + region);
 		if (region == '') {
@@ -1629,8 +1899,8 @@ async function startOverlay(element: HTMLElement, region?: string) {
 		} else if (region == '3') {
 			overlayPosition = currentOverlay3Position;
 		}
-		htmlToImage
-			.toCanvas(overlay, {
+		try {
+			let dataUrl = await htmlToImage.toCanvas(overlay, {
 				backgroundColor: 'transparent',
 				width: parseInt(styles.minWidth, 10),
 				height:
@@ -1641,32 +1911,31 @@ async function startOverlay(element: HTMLElement, region?: string) {
 				quality: 1,
 				pixelRatio: uiScale / 100 - 0.00999999999999999999,
 				skipAutoScale: true,
-			})
-			.then((dataUrl) => {
-				if (inCombat || element == getByID('BuffsInstall3')) {
-					let base64ImageString = dataUrl
-						.getContext('2d')
-						.getImageData(0, 0, dataUrl.width, dataUrl.height);
-					alt1.overLaySetGroup('install3region' + region);
-					alt1.overLayFreezeGroup('install3region' + region);
-					alt1.overLayClearGroup('install3region' + region);
-					alt1.overLayImage(
-						overlayPosition.x,
-						overlayPosition.y,
-						a1lib.encodeImageString(base64ImageString),
-						base64ImageString.width,
-						refreshRate
-					);
-					alt1.overLayRefreshGroup('install3region' + region);
-				} else {
-					alt1.overLayClearGroup('install3region' + region);
-					alt1.overLayRefreshGroup('install3region' + region);
-				}
-			})
-			.catch((e) => {
-				console.error(`html-to-image failed to capture`, e);
 			});
-		await new Promise((done) => setTimeout(done, refreshRate));
+
+			if (inCombat || element == getByID('BuffsInstall3')) {
+				let base64ImageString = dataUrl
+					.getContext('2d')
+					.getImageData(0, 0, dataUrl.width, dataUrl.height);
+				alt1.overLaySetGroup('install3region' + region);
+				alt1.overLayFreezeGroup('install3region' + region);
+				alt1.overLayClearGroup('install3region' + region);
+				alt1.overLayImage(
+					overlayPosition.x,
+					overlayPosition.y,
+					a1lib.encodeImageString(base64ImageString),
+					base64ImageString.width,
+					refreshRate
+				);
+				alt1.overLayRefreshGroup('install3region' + region);
+			} else {
+				alt1.overLayClearGroup('install3region' + region);
+				alt1.overLayRefreshGroup('install3region' + region);
+			}
+		} catch (e) {
+			console.error(`html-to-image failed to capture`, e);
+		}
+		await sauce.timeout(refreshRate);
 	}
 }
 
@@ -2066,7 +2335,7 @@ function roundedToFixed(input, digits) {
 }
 
 /* Settings */
-const currentVersion = '2.0.5';
+const currentVersion = '2.1.0';
 const settingsObject = {
 	settingsHeader: sauce.createHeading(
 		'h2',

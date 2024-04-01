@@ -179,7 +179,7 @@ html:not(.beta) .beta-only {
   background-color: transparent !important;
 }
 
-#UntrackedBuffsInstall3 .spacer {
+#UntrackedBuffs .spacer {
   background-color: #3e3e3e !important;
 }
 
@@ -207,7 +207,7 @@ html:not(.beta) .beta-only {
   opacity: 0;
 }
 
-#UntrackedBuffsInstall3 {
+#UntrackedBuffs {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -220,7 +220,7 @@ html:not(.beta) .beta-only {
 }
 
 .tracked-region li,
-#UntrackedBuffsInstall3 li {
+#UntrackedBuffs li {
   position: relative;
   display: flex;
   width: 27px;
@@ -228,13 +228,17 @@ html:not(.beta) .beta-only {
   margin: 1px;
 }
 
+.tracked-region li {
+  background-color: #282828;
+}
+
 .tracked-region li img,
-#UntrackedBuffsInstall3 li img {
+#UntrackedBuffs li img {
   background-color: #3e3e3e;
 }
 
 .tracked-region li::after,
-#UntrackedBuffsInstall3 li::after {
+#UntrackedBuffs li::after {
   display: block;
   content: attr(data-time);
   z-index: 3;
@@ -248,7 +252,7 @@ html:not(.beta) .beta-only {
 }
 
 .tracked-region li::before,
-#UntrackedBuffsInstall3 li::before {
+#UntrackedBuffs li::before {
   display: block;
   content: attr(data-time);
   z-index: 3;
@@ -303,6 +307,99 @@ html:not(.beta) .beta-only {
 #AdrenalinePotionDebuff.inactive::before,
 #AdrenalinePotionDebuff.inactive::after {
   content: 'adr'
+}
+
+#BolgStacksBuff.inactive .red,
+#BolgStacksBuff[data-color=""] .red {
+  display: none !important;
+}
+
+#BolgStacksBuff[data-color="green"] .green {
+  display: block;
+}
+
+#BolgStacksBuff[data-color="green"] .red {
+  display: none !important;
+}
+
+#BolgStacksBuff[data-color="red"] .green {
+  display: none !important;
+}
+
+#BolgStacksBuff[data-color="red"] .red {
+  display: block;
+}
+
+#BolgStacksBuff::before,
+#BolgStacksBuff::after {
+    content: attr(data-stacks)
+}
+
+#QuiverAmmo::before,
+#QuiverAmmo::after {
+    top: calc(50% + 1px) !important;
+    left: calc(50% + 1px) !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: translate(-50%, -50%);
+}
+
+#QuiverAmmo[data-ammo=""]::before,
+#QuiverAmmo[data-ammo=""]::after {
+  font-size: 7px !important;
+  content: 'Ammo'
+}
+
+#QuiverAmmo[data-ammo="BIK"]::before,
+#QuiverAmmo[data-ammo="BIK"]::after {
+  content: 'BIK'
+}
+
+#QuiverAmmo[data-ammo="FUL"]::before,
+#QuiverAmmo[data-ammo="FUL"]::after {
+  content: 'FUL'
+}
+
+#QuiverAmmo[data-ammo="WEN"]::before,
+#QuiverAmmo[data-ammo="WEN"]::after {
+  content: 'WEN'
+}
+
+#QuiverAmmo[data-ammo="JAS"]::before,
+#QuiverAmmo[data-ammo="JAS"]::after {
+  content: 'JAS'
+}
+
+#QuiverAmmo[data-ammo="BSD"]::before,
+#QuiverAmmo[data-ammo="BSD"]::after {
+  content: 'BSD'
+}
+
+#QuiverAmmo[data-ammo="DSP"]::before,
+#QuiverAmmo[data-ammo="DSP"]::after {
+  content: 'DSP'
+}
+
+#QuiverAmmo[data-ammo="(H)"]::before,
+#QuiverAmmo[data-ammo="(H)"]::after {
+  content: 'HYD'
+}
+
+#QuiverAmmo[data-ammo="(R)"]::before,
+#QuiverAmmo[data-ammo="(R)"]::after {
+  font-size: 8px !important;
+  content: 'RUBY'
+}
+
+#QuiverAmmo[data-ammo="(D)"]::before,
+#QuiverAmmo[data-ammo="(D)"]::after {
+  content: 'DIA'
+}
+
+#QuiverAmmo[data-ammo="(O)"]::before,
+#QuiverAmmo[data-ammo="(O)"]::after {
+  font-size: 8px !important;
+  content: 'ONYX'
 }
 
 #VirusDebuff[data-virus=""] {
@@ -385,11 +482,11 @@ html:not(.beta) .beta-only {
 }
 
 #OverheadPrayer[data-prayer="deflectmagic"] {
-  background-image: url("data:image/png;base64,");
+  background-image: url("/asset/buffs/deflect_magic.png");
 }
 
 #OverheadPrayer[data-prayer="deflectmelee"] {
-  background-image: url('/asset/buffs/deflect_magic.png');
+  background-image: url('/asset/buffs/deflect_melee.png');
 }
 
 #OverheadPrayer[data-prayer="deflectnecromancy"] {
@@ -533,7 +630,7 @@ html:not(.beta) .beta-only {
   opacity: 1;
 }
 
-#UntrackedBuffsInstall3 {
+#UntrackedBuffs {
   border: solid 1px red;
   min-height: 10px;
   padding: 4px;
