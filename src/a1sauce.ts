@@ -1,6 +1,6 @@
 // TODO: Figure out why I can't just import { default as config } from './appconfig.json';
 let config = {
-	appName: 'betterBuffBar',
+	appName: 'betterBuffBar3',
 };
 
 export function createHeading(size: string, content: string) {
