@@ -7433,7 +7433,7 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 };
 // TODO: Figure out why I can't just import { default as config } from './appconfig.json';
 var config = {
-    appName: 'betterBuffBar',
+    appName: 'betterBuffBar3',
 };
 function createHeading(size, content) {
     var header = document.createElement(size);
