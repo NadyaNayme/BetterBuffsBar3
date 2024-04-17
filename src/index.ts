@@ -1111,9 +1111,9 @@ async function findDeathspores(
 	} = options;
 	// Exit early if our buff isn't in the Tracked Buffs list
 	if (
-		(!getByID('Buffs').contains(element) &&
-			!getByID('Buffs2').contains(element) &&
-			!getByID('Buffs3').contains(element)) ||
+		(!getByID('BuffsInstall3').contains(element) &&
+			!getByID('Buffs2Install3').contains(element) &&
+			!getByID('Buffs3Install3').contains(element)) ||
 		!buffsReader
 	) {
 		return;

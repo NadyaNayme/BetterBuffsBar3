@@ -12723,9 +12723,9 @@ function findDeathspores(buffsReader, buffImage, element, options) {
                 case 0:
                     _g = options.threshold, threshold = _g === void 0 ? (_a = options.threshold) !== null && _a !== void 0 ? _a : 100 : _g, _h = options.expirationPulse, expirationPulse = _h === void 0 ? (_b = options.expirationPulse) !== null && _b !== void 0 ? _b : false : _h, _j = options.minRange, minRange = _j === void 0 ? (_c = options.minRange) !== null && _c !== void 0 ? _c : 0 : _j, _k = options.maxRange, maxRange = _k === void 0 ? (_d = options.maxRange) !== null && _d !== void 0 ? _d : Infinity : _k, _l = options.showCooldown, showCooldown = _l === void 0 ? (_e = options.showCooldown) !== null && _e !== void 0 ? _e : false : _l, _m = options.cooldownTimer, cooldownTimer = _m === void 0 ? options.cooldownTimer : _m, _o = options.debug, debug = _o === void 0 ? (_f = options.debug) !== null && _f !== void 0 ? _f : false : _o;
                     // Exit early if our buff isn't in the Tracked Buffs list
-                    if ((!getByID('Buffs').contains(element) &&
-                        !getByID('Buffs2').contains(element) &&
-                        !getByID('Buffs3').contains(element)) ||
+                    if ((!getByID('BuffsInstall3').contains(element) &&
+                        !getByID('Buffs2Install3').contains(element) &&
+                        !getByID('Buffs3Install3').contains(element)) ||
                         !buffsReader) {
                         return [2 /*return*/];
                     }
